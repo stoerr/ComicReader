@@ -72,7 +72,7 @@ public class ActivityComicReader extends ComicActivity {
 	protected static UnreadLauncher mUL = null;
 	/** web page display activity */
 	protected static ComicMainWebPageDisplay mWP = null;
-	
+
 	/** sort type */
 	protected int mType;
 
@@ -128,7 +128,7 @@ public class ActivityComicReader extends ComicActivity {
 			startActivityForResult(i, 0);
 		}
 	}
-	
+
 	/** to launch the alertdialog for opening the comic in a web page */
 	private class ComicMainWebPageDisplay implements OnLongClickListener {
 		public boolean onLongClick(View v) {
@@ -161,7 +161,7 @@ public class ActivityComicReader extends ComicActivity {
 		}
 	}
 
-	
+
 
 	/**
 	 * adapter class for efficient traversal of list items displayed in the main activity
@@ -170,10 +170,10 @@ public class ActivityComicReader extends ComicActivity {
 		/** Used to inflate the layout */
 		private LayoutInflater mInflater;
 		private Context ctx;
-		
+
 		public EfficientAdapter(Context context) {
 			mInflater = LayoutInflater.from(context);
-			this.ctx =context;  
+			this.ctx =context;
 		}
 		@Override
 		public int getCount() {
@@ -190,18 +190,18 @@ public class ActivityComicReader extends ComicActivity {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			final ViewHolder holder;
-			
+
 			//Added a way to get button from settings menu
 			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
-	    	int mscType = Integer.parseInt(sp.getString("shortcutButton", Integer.toString(1)));
-			
+	    	int mscType = Integer.parseInt(sp.getString("shortcutButton", Integer.toString(3)));
+
 			if (convertView == null) {
 				convertView = mInflater.inflate(R.layout.main_listview_content, null);
 				holder = new ViewHolder();
 				holder.latest = (Button) convertView.findViewById(R.id.comic_item_latest);
 				holder.latest.setOnClickListener(mLL);
 				holder.latest.setOnLongClickListener(mWP);
-				//Switch what shortcut button is to be shown according to the settings. 
+				//Switch what shortcut button is to be shown according to the settings.
 				switch(mscType){
 				case 1:
 				holder.favorite = (Button) convertView.findViewById(R.id.comic_item_scb);
@@ -216,10 +216,10 @@ public class ActivityComicReader extends ComicActivity {
 				case 3:
 				holder.unread = (Button) convertView.findViewById(R.id.comic_item_scb);
 				holder.unread.setText("UnR");
-				holder.unread.setOnClickListener(mUL);	
+				holder.unread.setOnClickListener(mUL);
 				break;
 				}
-								
+
 				convertView.setTag(holder);
 				convertView.setBackgroundColor(mColor1);
 			}
@@ -234,7 +234,7 @@ public class ActivityComicReader extends ComicActivity {
 				}
 				holder.latest.setText(txt);
 				holder.latest.setTag(cls.mName);
-				
+
 				//TODO: I don't know what this does but it has to be set correctly or android crashes
 				switch(mscType){
 				case 1:
@@ -247,14 +247,14 @@ public class ActivityComicReader extends ComicActivity {
 				holder.unread.setTag(cls.mName);
 				break;
 				}
-				
-				
-				
+
+
+
 			}
 			catch(ComicNotFoundException e) { // This should never occur!
 				e.printStackTrace();
 			}
-			return convertView;		
+			return convertView;
 		}
 
 		/**

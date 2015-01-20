@@ -12,15 +12,15 @@
 		android:summary="Number of times to sync in a day"
 		android:dependency="backgroundCacheEnabledPref"
 		android:key="backgroundCacheFreqPref"
-		android:defaultValue="4"
+		android:defaultValue="2"
 		android:entries="@array/freq"
 		android:entryValues="@array/freq_values" />
     <ListPreference
 		android:title="Cache Start Time"
-		android:summary="When does the first sync happen in a day (default is 6am)"
+		android:summary="When does the first sync happen in a day (default is 5am)"
 		android:dependency="backgroundCacheEnabledPref"
 		android:key="backgroundCacheStartTimePref"
-		android:defaultValue="6"
+		android:defaultValue="5"
 		android:entries="@array/start_time"
 		android:entryValues="@array/start_time_values" />
 	<CheckBoxPreference
@@ -41,7 +41,7 @@
 		android:key="syncTypePref"
 		android:title="Sync Type"
 		android:summary="Order of syncing the strips"
-		android:defaultValue="1"
+		android:defaultValue="3"
 		android:entries="@array/sync_type"
 		android:entryValues="@array/sync_type_values"
 		android:dependency="backgroundCacheEnabledPref" />
@@ -49,10 +49,10 @@
 		android:key="shortcutButton"
 		android:title="Shortcut Button"
 		android:summary="What the shortcut button will display"
-		android:defaultValue="1"
+		android:defaultValue="3"
 		android:entries="@array/sc_button"
 		android:entryValues="@array/sc_button_values"
-		android:dependency="backgroundCacheEnabledPref" />		
+		android:dependency="backgroundCacheEnabledPref" />
 	<CheckBoxPreference
 		android:key="notificationPref"
         android:title="Display Notifications"
