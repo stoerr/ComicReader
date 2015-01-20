@@ -33,8 +33,8 @@ public class Zap extends ArchivedComic {
 	    int left, right;
 	    String temp;
 		for (left=0, right=str_temp.length-1; left<right; left++, right--) {
-		    temp = str_temp[left]; 
-		    str_temp[left]  = str_temp[right]; 
+		    temp = str_temp[left];
+		    str_temp[left]  = str_temp[right];
 		    str_temp[right] = temp;
 		}
 
@@ -57,7 +57,7 @@ public class Zap extends ArchivedComic {
 		String final_str = null;
 		String final_title = null;
 		while((str = reader.readLine()) != null) {
-			int index1 = str.indexOf("comic_object");
+			int index1 = str.indexOf("comic-item");
 			if (index1 != -1) {
 				final_str = str;
 				final_title = str;
@@ -67,7 +67,7 @@ public class Zap extends ArchivedComic {
 		final_str = final_str.replaceAll("\".*","");
 		final_title = final_title.replaceAll(".*title=\"","");
 		final_title = final_title.replaceAll("\".*","");
-		strip.setTitle("Zap: "+final_title); 
+		strip.setTitle("Zap: "+final_title);
 		strip.setText(" -NA- ");
 		return final_str;
 	}
