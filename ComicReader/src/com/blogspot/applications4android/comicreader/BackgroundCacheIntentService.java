@@ -154,7 +154,7 @@ public class BackgroundCacheIntentService extends FullyAwakeIntentService {
 	private void _cacheStrips(SharedPreferences sp) {
 		mSortType = Integer.parseInt(sp.getString("mySortPref", Integer.toString(ComicClassList.SORT_ALPHABETICAL)));
 		mNumStrips = Integer.parseInt(sp.getString("numStripsCachePref", "5"));
-		mSyncType = Integer.parseInt(sp.getString("syncTypePref", Integer.toString(SYNC_FROM_LATEST)));
+		mSyncType = Integer.parseInt(sp.getString("syncTypePref", Integer.toString(SYNC_BOTH)));
 		Log.d(TAG, "Setting up the progress bar for notifying sync updates...");
 		try {
 			mList = new ComicClassList(mCtx.getAssets());

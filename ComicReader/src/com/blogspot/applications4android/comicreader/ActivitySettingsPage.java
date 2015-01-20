@@ -73,7 +73,7 @@ public class ActivitySettingsPage extends PreferenceActivity {
     		Log.d(TAG, "Caching disabled. Returning back...");
     		return;
     	}
-    	int hour = Integer.parseInt(sp.getString("backgroundCacheStartTimePref", "6"));
+    	int hour = Integer.parseInt(sp.getString("backgroundCacheStartTimePref", "5"));
     	int cacheFreq = Integer.parseInt(sp.getString("backgroundCacheFreqPref", "1"));
     	long interval = ONE_DAY / cacheFreq;
     	Calendar cal = Calendar.getInstance();
