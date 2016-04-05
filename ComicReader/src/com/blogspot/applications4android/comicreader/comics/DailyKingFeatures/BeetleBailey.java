@@ -1,6 +1,5 @@
 package com.blogspot.applications4android.comicreader.comics.DailyKingFeatures;
 
-import android.annotation.SuppressLint;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -20,7 +19,6 @@ public class BeetleBailey extends DailyKingFeaturesComic {
     protected static final String TAG = "BeetleBailey";
     protected static final String STRIP_NAME = "Beetle Bailey";
 
-    @SuppressLint("SimpleDateFormat")
     private final DateFormat urlDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private final Pattern imageRegex = Pattern.compile("src=\"(http://safr.kingfeatures.com[^\"]*)\"");
 
