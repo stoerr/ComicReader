@@ -100,6 +100,7 @@ public class EerieCuties extends ArchivedComic {
 		vol_urls.add("http://www.eeriecuties.com/archive/volume1");
 		vol_urls.add("http://www.eeriecuties.com/archive/volume2");
 		vol_urls.add("http://www.eeriecuties.com/archive/volume3");
+		vol_urls.add("http://www.eeriecuties.com/archive/volume4");
 		return vol_urls;
 	}
 	
