@@ -257,7 +257,12 @@ public class FileUtils {
 	 * @return path. Returns null if sdcard is not mounted
 	 */
 	public static File getSdcard() {
-		if(!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+		try {
+			if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+				return null;
+			}
+		} catch (RuntimeException e) { // for testing.
+			System.err.println(e);
 			return null;
 		}
 		return Environment.getExternalStorageDirectory();
