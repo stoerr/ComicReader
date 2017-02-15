@@ -147,7 +147,7 @@ public class EerieCuties extends ArchivedComic {
 				    int cc = Character.getNumericValue(c);
 				    res = res * 10 + cc;}
 				}
-				if(res<20101102){
+				if(res<20101102 || res >= 20160404){
 				url_link = str_temp + ".jpg";
 			}else{
 				url_link = str_temp + ".png";
