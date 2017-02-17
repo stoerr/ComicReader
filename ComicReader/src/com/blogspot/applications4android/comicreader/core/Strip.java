@@ -18,6 +18,7 @@ import android.util.Log;
 import com.blogspot.applications4android.comicreader.exceptions.BitMapException;
 import com.blogspot.applications4android.comicreader.exceptions.ComicSDCardFull;
 
+import static org.json.JSONObject.quote;
 
 /**
  * Data-structure for holding info on a comic-strip
@@ -108,11 +109,11 @@ public final class Strip {
 	 * @param sb string-builder where to append the contents
 	 */
 	public void toJsonString(StringBuilder sb) {
-		sb.append("{\"mHtmlUrl\":\"" + mHtmlUrl + "\"");
+		sb.append("{\"mHtmlUrl\":" + quote(mHtmlUrl));
 		if(mStripUrl != null) {
-			sb.append(", \"mStripUrl\":\"" + mStripUrl + "\"");
+			sb.append(", \"mStripUrl\":" + quote(mStripUrl));
 		}
-		sb.append(", \"mImgFile\":\"" + mImgFile + "\"");
+		sb.append(", \"mImgFile\":" + quote(mImgFile));
 		if(mRead) {
 			sb.append(", \"mRead\":\"true\"");
 		}
@@ -132,12 +133,10 @@ public final class Strip {
 			sb.append(", \"mNextUid\":\"" + mNextUid + "\"");
 		}
 		if(mTitle != null) {
-            String temp = mTitle.replaceAll("\"", "\\\"");
-			sb.append(", \"mTitle\":\"" + temp + "\"");
+			sb.append(", \"mTitle\":" + quote(mTitle));
 		}
 		if(mText != null) {
-		    String temp = mText.replaceAll("\"", "\\\"");
-			sb.append(", \"mText\":\"" + temp + "\"");
+			sb.append(", \"mText\":" + quote(mText));
 		}
 		sb.append("}");
 	}
