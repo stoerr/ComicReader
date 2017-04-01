@@ -17,7 +17,7 @@ public class EerieCuties extends ArchivedComic {
 	protected String[] getAllComicUrls(BufferedReader reader)
 			throws IOException {
 		int idx = 0;
-		ArrayList<String> m_com = new ArrayList<String>(); 
+		ArrayList<String> m_com = new ArrayList<String>();
 		ArrayList<String> m_com0 = new ArrayList<String>(m_com.size());
 		String str,str_temp;
 		int i,j;
@@ -63,7 +63,7 @@ public class EerieCuties extends ArchivedComic {
 		m_com0.toArray(m_com_urls);
 		return m_com_urls;
 	}
-    
+
 	@Override
 	protected void fetchAllComicUrls() {
 		ArrayList<String> all_vols = new ArrayList<String>();
@@ -103,13 +103,13 @@ public class EerieCuties extends ArchivedComic {
 		vol_urls.add("http://www.eeriecuties.com/archive/volume4");
 		return vol_urls;
 	}
-	
+
 	@Override
 	protected String getLatestStripUrl() {
 		fetchAllComicUrls();
 		return getStripUrlFromId(mComicUrls.length - 1);
 	}
-	
+
 	@Override
 	protected String getArchiveUrl() {
 		return "http://www.eeriecuties.com/archive";
