@@ -12,34 +12,33 @@ public class FeyWinds extends ArchivedComic {
 
 	@Override
 	public String getComicWebPageUrl() {
-		return "http://kitsune.rydia.net/comic.html";
+		return "http://www.feywinds.com/";
 	}
 
 	@Override
 	protected String[] getAllComicUrls(BufferedReader reader) throws IOException {
-		int idx = 0;
-		ArrayList<String> m_com = new ArrayList<String>(); 
-		String str,str_temp;
-		int i;
-		while((str = reader.readLine()) != null) {
-			i = str.indexOf("alt=\"[IMG]");
-			if (i != -1) {
-				str_temp = str;
-				str_temp=str_temp.replaceAll(".*href=\"","");
-				str_temp=str_temp.replaceAll("\".*","");
-				str_temp="http://kitsune.rydia.net/comic/pages/"+str_temp;
-				m_com.add(str_temp);
-				idx++;
+			int idx = 0;
+			ArrayList<String> m_com = new ArrayList<String>();
+			String str, str_temp;
+			String urlpart = "href=\"http://www.feywinds.com/feywinds/";
+			while ((str = reader.readLine()) != null) {
+				int i = -1;
+				while ((i = str.indexOf(urlpart, i+1)) >= 0) {
+					int j = str.indexOf("\"", i + urlpart.length());
+					str_temp = str.substring(i + urlpart.length(), j-1);
+					str_temp = "http://www.feywinds.com/wp-content/uploads/" + str_temp + ".jpg";
+					m_com.add(str_temp);
+					idx++;
+				}
 			}
-		}
-		String []m_com_urls = new String[idx];
-		m_com.toArray(m_com_urls);
-		return m_com_urls;
+			String[] m_com_urls = new String[idx];
+			m_com.toArray(m_com_urls);
+			return m_com_urls;
 	}
 
 	@Override
 	protected String getArchiveUrl() {
-		return "http://kitsune.rydia.net/comic/pages/";
+		return "http://www.feywinds.com/archive/";
 	}
 
 	@Override
@@ -51,7 +50,7 @@ public class FeyWinds extends ArchivedComic {
 	protected String parse(String url, BufferedReader reader, Strip strip)
 			throws IOException {
 		String val = url;
-		String index = val.substring(val.length()-8,val.length()-4);
+		String index = val.substring(val.length()-4,val.length()-1);
 		strip.setTitle("Fey Winds" + ": " + index);
 		strip.setText("-NA-");
 		return url;
