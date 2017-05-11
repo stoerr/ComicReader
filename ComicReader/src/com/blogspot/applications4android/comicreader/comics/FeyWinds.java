@@ -26,6 +26,8 @@ public class FeyWinds extends ArchivedComic {
 				while ((i = str.indexOf(urlpart, i+1)) >= 0) {
 					int j = str.indexOf("\"", i + urlpart.length());
 					str_temp = str.substring(i + urlpart.length(), j-1);
+					if (!str_temp.startsWith("fw") && ! str_temp.startsWith("page-")) continue;
+					str_temp = str_temp.replaceAll("page-", "fw").trim();
 					str_temp = "http://www.feywinds.com/wp-content/uploads/" + str_temp + ".jpg";
 					m_com.add(str_temp);
 					idx++;
