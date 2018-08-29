@@ -12,11 +12,11 @@ public class Xkcd extends IndexedComic {
 
 	@Override
 	protected String getFrontPageUrl() {
-		return "http://www.xkcd.com/";
+		return "https://xkcd.com/";
 	}
 
 	public String getComicWebPageUrl() {
-		return "http://www.xkcd.com";
+		return "https://xkcd.com/";
 	}
 
 	@Override
@@ -41,12 +41,12 @@ public class Xkcd extends IndexedComic {
 
 	@Override
 	public String getStripUrlFromId(int num) {
-		return "http://www.xkcd.com/" + num;
+		return "https://xkcd.com/" + num;
 	}
 
 	@Override
 	protected int getIdFromStripUrl(String url) {
-		return Integer.parseInt(url.replaceAll("http.*com/", ""));
+		return Integer.parseInt(url.replaceAll("https.*com/", ""));
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class Xkcd extends IndexedComic {
 		while ((str = reader.readLine()) != null) {
 			int index1 = str.indexOf("imgs.xkcd.com/comics");
 			if (index1 != -1) {
-				image_url = str.replaceAll(".*http","http");
+				image_url = str.replaceAll(".*https","https");
 			}
 			int index2 = str.indexOf("src=\"//imgs.xkcd.com/comics");
 			if (index2 != -1) {
