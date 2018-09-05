@@ -169,7 +169,7 @@ public final class Strip {
     	o1.inSampleSize = factor;
     	Bitmap bm = BitmapFactory.decodeFile(mImgFile, o1);
     	if(bm == null) {
-    		String msg = "Failed to decode the image="+mImgFile+" URL="+mHtmlUrl;
+    		String msg = "Failed to decode the image="+mImgFile+" URL="+mHtmlUrl+" Strip="+mStripUrl;
     		BitMapException ce = new BitMapException(msg);
     		throw ce;
     	}
