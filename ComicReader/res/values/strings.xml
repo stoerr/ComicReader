@@ -24,7 +24,7 @@
     <string name="empty_favorite_series">\nNo comics selected.\n\nSelect comics from Menu -> Select Comics</string>
 
     <string name="app_blog_url">https://market.android.com/details?id=com.blogspot.applications4android.comicreader</string>
-    <string name="dev_email">applications4android@gmail.com</string>
+    <string name="dev_email">yu4cheem@techno.ms</string>
     <string name="comic_request_msg">From now onwards, please visit https://github.com/applications4android/ComicReader/issues and file a new issue to request for a comic to be added</string>
     <string name="comic_request_subj">Comic Request</string>
     <string name="comic_bug_report_subj">Comic Reader --- Bug Report</string>
