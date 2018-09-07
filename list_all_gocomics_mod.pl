@@ -52,7 +52,7 @@ open JSON, ">$JSON";
 
 print "Getting all comics page...\n";
 system("rm -f $mainpage $allcomics");
-system("wget '$mainurl' -O $mainpage --quiet");
+system("curl '$mainurl' -o $mainpage");
 
 print "Getting all comics list...\n";
 open(ALL, "<$mainpage")  or  die("Failed to open '$mainpage' for reading!");
@@ -74,7 +74,7 @@ foreach my $comic (@comicslist) {
     print "  Working on '$comic->[1]'... ";
     system("rm -f $temp_file_comic");
     my $link = $comic->[0];
-    system("wget '$link' -O $temp_file_comic --quiet");
+    system("curl '$link' -o $temp_file_comic");
     # feature-id
     $comic->[2] = 0;
     # first strip date

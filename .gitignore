@@ -8,3 +8,5 @@ target/
 *.prefs
 .idea/
 *.iml
+classes.json
+all_gocomics.txt

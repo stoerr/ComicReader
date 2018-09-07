@@ -1,22 +1,20 @@
 package com.blogspot.applications4android.comicreader.core;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
+import com.blogspot.applications4android.comicreader.exceptions.BitMapException;
+import com.blogspot.applications4android.comicreader.exceptions.ComicSDCardFull;
+import org.apache.http.client.ClientProtocolException;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-
-import org.apache.http.client.ClientProtocolException;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
-
-import com.blogspot.applications4android.comicreader.exceptions.BitMapException;
-import com.blogspot.applications4android.comicreader.exceptions.ComicSDCardFull;
 
 import static org.json.JSONObject.quote;
 
@@ -202,13 +200,15 @@ public final class Strip {
 	 */
 	public boolean downloadImage(ComicParser p) throws ClientProtocolException, URISyntaxException, IOException, ComicSDCardFull {
 		File img = new File(mImgFile);
-		if(img.exists()) {
+		if(img.exists() && img.length() > 0) {
 			return false;
 		}
 		String surl = p.parse(mHtmlUrl, this);
 		Log.d(TAG, "Image url="+surl);
 		mStripUrl = surl;
 		Downloader.dnldImage(mImgFile, new URI(surl));
+		if (!img.exists() || img.length() < 1)
+			throw new IOException("Empty file=" + mImgFile + " URL=" + mHtmlUrl + " Strip=" + mStripUrl);
 		return true;
 	}
 
@@ -403,7 +403,7 @@ public final class Strip {
 	 */
 	private void _setImgFile_(String imgR) {
 		if(imgR != null) {
-			mImgFile = imgR + "/" + Md5Hash.str2md5(mHtmlUrl) + ".img";
+			mImgFile = imgR + "/" + Md5Hash.str2md5(mHtmlUrl) + ".gif";
 		}
 	}
 }

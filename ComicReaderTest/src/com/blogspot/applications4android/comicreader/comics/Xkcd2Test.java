@@ -1,14 +1,9 @@
 package com.blogspot.applications4android.comicreader.comics;
 
-import android.content.res.AssetManager;
 import android.test.InstrumentationTestCase;
-import com.blogspot.applications4android.comicreader.comics.GoComics.CalvinandHobbes;
 import com.blogspot.applications4android.comicreader.core.Strip;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.io.File;
 
 public class Xkcd2Test extends InstrumentationTestCase {
 
@@ -16,8 +11,12 @@ public class Xkcd2Test extends InstrumentationTestCase {
         Xkcd comic = new Xkcd();
         Strip strip = comic.getLatestStrip();
         assertNotNull(strip);
+        assertTrue(comic.getCurrentId() > 2040);
         String image = strip.getImage(comic);
         assertNotNull(image);
+        File f = new File(image);
+        assertTrue(f.exists());
+        assertTrue(f.length() > 0);
     }
 
 }

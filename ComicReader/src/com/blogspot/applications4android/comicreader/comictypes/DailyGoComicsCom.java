@@ -159,6 +159,7 @@ public class DailyGoComicsCom extends DailyComic {
 //Log.d("GO_Comics", "final_string " + final_str);
     	final_str = final_str.replaceAll(".*=\"","");
         final_str = final_str.replaceAll("\"/*","");
+		final_str = final_str.replaceAll("https://","http://");
 
     	final_title = final_title.replaceAll(".*=\"","");
         final_title = final_title.replaceAll("\"/*","");
