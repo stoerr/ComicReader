@@ -47,14 +47,17 @@ public class Downloader {
 	 */
 	public static String downloadToString(URI uri) throws ClientProtocolException, URISyntaxException, IOException {
 		BufferedReader br = openConnection(uri);
-		StringBuilder sb = new StringBuilder(SB_CAPACITY);
-		char[] buff = new char[SB_CAPACITY];
-		int len;
-	    while((len = br.read(buff)) > 0) {
-	    	sb.append(buff, 0, len);
-	    }
-	    br.close();
-	    return sb.toString();
+		try {
+			StringBuilder sb = new StringBuilder(SB_CAPACITY);
+			char[] buff = new char[SB_CAPACITY];
+			int len;
+			while ((len = br.read(buff)) > 0) {
+				sb.append(buff, 0, len);
+			}
+			return sb.toString();
+		} finally {
+			try { br.close();} catch (Exception e) {}
+		}
 	}
 
 	/**
@@ -105,13 +108,16 @@ public class Downloader {
 		FileUtils.checkFreeSpaceSdcard();
 		FileOutputStream fos = new FileOutputStream(file);
 		BufferedInputStream reader = openConnectionStream(uri);
-        byte[] buff = new byte[DNLD_BUFF_SIZE];
-        int len;
-        while((len = reader.read(buff, 0, DNLD_BUFF_SIZE)) > 0) {
-            fos.write(buff, 0, len);
-        }
-        fos.close();
-        reader.close();
+		try {
+			byte[] buff = new byte[DNLD_BUFF_SIZE];
+			int len;
+			while ((len = reader.read(buff, 0, DNLD_BUFF_SIZE)) > 0) {
+				fos.write(buff, 0, len);
+			}
+		} finally {
+			try { fos.close(); } catch (Exception e) {}
+			try { reader.close(); } catch (Exception e) {}
+		}
 	}
 
 	/**

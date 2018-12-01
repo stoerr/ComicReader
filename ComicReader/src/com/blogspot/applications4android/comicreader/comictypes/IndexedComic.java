@@ -73,7 +73,6 @@ public abstract class IndexedComic extends Comic {
 			try {
 				br = Downloader.openConnection(new URI(getFrontPageUrl()));
 				mLatestId = parseForLatestId(br);
-				br.close();
 			}
 			catch(Exception e) {
 				e.printStackTrace();

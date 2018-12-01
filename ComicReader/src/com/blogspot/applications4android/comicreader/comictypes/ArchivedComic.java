@@ -43,7 +43,6 @@ public abstract class ArchivedComic extends IndexedComic {
 			try {
 				reader = Downloader.openConnection(new URI(getArchiveUrl()));
 				mComicUrls = getAllComicUrls(reader);
-				reader.close();
 			} catch(Exception e) {
 				e.printStackTrace();
 				return;
