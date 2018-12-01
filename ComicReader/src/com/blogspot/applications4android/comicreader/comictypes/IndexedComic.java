@@ -69,14 +69,17 @@ public abstract class IndexedComic extends Comic {
 	@Override
 	protected String getLatestStripUrl() {
 		if(mLatestId < 0) {
+			BufferedReader br = null;
 			try {
-				BufferedReader br = Downloader.openConnection(new URI(getFrontPageUrl()));
+				br = Downloader.openConnection(new URI(getFrontPageUrl()));
 				mLatestId = parseForLatestId(br);
 				br.close();
 			}
 			catch(Exception e) {
 				e.printStackTrace();
 				return null;
+			} finally {
+				try { br.close(); } catch (Exception e) {}
 			}
 		}
 		return getStripUrlFromId(mLatestId);

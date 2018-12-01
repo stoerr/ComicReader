@@ -34,12 +34,15 @@ public abstract class YearlyArchivedComic extends ArchivedComic {
 				int last = Calendar.getInstance().get(Calendar.YEAR);
 				for(int year=getFirstYear();year<=last;++year) {
 					BufferedReader reader = Downloader.openConnection(new URI(getArchiveUrl(year)));
-					ArrayList<String> urls = getAllComicUrls(reader, year);
-					reader.close();
-					if(neededReversal()) {
-						Collections.reverse(urls);
+					try {
+						ArrayList<String> urls = getAllComicUrls(reader, year);
+						if(neededReversal()) {
+							Collections.reverse(urls);
+						}
+						coms.addAll(urls);
+					} finally {
+						try { reader.close(); } catch (Exception e) {}
 					}
-					coms.addAll(urls);
 				}
 				// NOT WORKING!!
 				//mComicUrls = (String[]) coms.toArray();

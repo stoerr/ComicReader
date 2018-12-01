@@ -39,14 +39,16 @@ public abstract class ArchivedComic extends IndexedComic {
 	 */
 	protected void fetchAllComicUrls() {
 		if(mComicUrls == null) {
+			BufferedReader reader = null;
 			try {
-				BufferedReader reader = Downloader.openConnection(new URI(getArchiveUrl()));
+				reader = Downloader.openConnection(new URI(getArchiveUrl()));
 				mComicUrls = getAllComicUrls(reader);
 				reader.close();
-			}
-			catch(Exception e) {
+			} catch(Exception e) {
 				e.printStackTrace();
 				return;
+			} finally {
+				try { reader.close(); } catch (Exception e) {}
 			}
 			mLatestId = mComicUrls.length - 1;
 			mBound = new Bound(0, (long) (mComicUrls.length - 1));

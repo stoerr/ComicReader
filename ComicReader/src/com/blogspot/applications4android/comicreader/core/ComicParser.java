@@ -29,12 +29,9 @@ public abstract class ComicParser {
 		BufferedReader br = Downloader.openConnection(new URI(url));
 		try {
 			String surl = parse(url, br, strip);
-			br.close();
 			return surl;
-		}
-		catch(IOException e) {
-			br.close();
-			throw e;
+		} finally {
+			try { br.close(); } catch (Exception e) {}
 		}
 	}
 
