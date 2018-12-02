@@ -91,6 +91,7 @@ public class BackgroundCacheIntentService extends FullyAwakeIntentService {
 				Thread.sleep(SLEEP_DURATION);
 			}
 			catch (Exception e) {
+				ComicUpdater.addOtherException(e);
 				e.printStackTrace();
 			}
 			Log.d(TAG, "Sleeping is over...");
@@ -160,6 +161,7 @@ public class BackgroundCacheIntentService extends FullyAwakeIntentService {
 			mList = new ComicClassList(mCtx.getAssets());
 		}
 		catch (Exception e) {
+			ComicUpdater.addOtherException(e);
 			e.printStackTrace();
 			return;
 		}
@@ -200,6 +202,7 @@ public class BackgroundCacheIntentService extends FullyAwakeIntentService {
 		}
 		catch (Exception e) {
 			mMgr.cancel(PROGRESS_NOTIFY_ID);
+			ComicUpdater.addOtherException(e);
 			e.printStackTrace();
 		}
 		mMgr.cancel(PROGRESS_NOTIFY_ID);

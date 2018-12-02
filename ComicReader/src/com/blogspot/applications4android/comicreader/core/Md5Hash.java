@@ -1,5 +1,7 @@
 package com.blogspot.applications4android.comicreader.core;
 
+import com.blogspot.applications4android.comicreader.ComicUpdater;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
@@ -33,6 +35,7 @@ public class Md5Hash {
 			return String.format("%0" + (digest.length << 1) + "X", bi);
 		}
 		catch(Exception e) {
+			ComicUpdater.addOtherException(e);
 			return null;
 		}
 	}

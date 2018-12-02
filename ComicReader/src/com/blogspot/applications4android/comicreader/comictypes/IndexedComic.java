@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Random;
 
+import com.blogspot.applications4android.comicreader.ComicUpdater;
 import com.blogspot.applications4android.comicreader.core.Bound;
 import com.blogspot.applications4android.comicreader.core.Comic;
 import com.blogspot.applications4android.comicreader.core.Downloader;
@@ -75,10 +76,13 @@ public abstract class IndexedComic extends Comic {
 				mLatestId = parseForLatestId(br);
 			}
 			catch(Exception e) {
+				ComicUpdater.addOtherException(e);
 				e.printStackTrace();
 				return null;
 			} finally {
-				try { br.close(); } catch (Exception e) {}
+				try { br.close(); } catch (Exception e) {
+					ComicUpdater.addOtherException(e);
+				}
 			}
 		}
 		return getStripUrlFromId(mLatestId);

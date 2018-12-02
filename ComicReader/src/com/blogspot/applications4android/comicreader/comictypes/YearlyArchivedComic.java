@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 
+import com.blogspot.applications4android.comicreader.ComicUpdater;
 import com.blogspot.applications4android.comicreader.core.Bound;
 import com.blogspot.applications4android.comicreader.core.Downloader;
 
@@ -41,7 +42,9 @@ public abstract class YearlyArchivedComic extends ArchivedComic {
 						}
 						coms.addAll(urls);
 					} finally {
-						try { reader.close(); } catch (Exception e) {}
+						try { reader.close(); } catch (Exception e) {
+							ComicUpdater.addOtherException(e);
+						}
 					}
 				}
 				// NOT WORKING!!
@@ -53,6 +56,7 @@ public abstract class YearlyArchivedComic extends ArchivedComic {
 				}
 			}
 			catch(Exception e) {
+				ComicUpdater.addOtherException(e);
 				e.printStackTrace();
 				return;
 			}

@@ -155,6 +155,7 @@ public class ActivityComicReader extends ComicActivity {
 				return true;
 			}
 			catch(Exception e) {
+				ComicUpdater.addOtherException(e);
 				e.printStackTrace();
 				return false;
 			}
@@ -252,6 +253,7 @@ public class ActivityComicReader extends ComicActivity {
 
 			}
 			catch(ComicNotFoundException e) { // This should never occur!
+				ComicUpdater.addOtherException(e);
 				e.printStackTrace();
 			}
 			return convertView;
@@ -311,6 +313,7 @@ public class ActivityComicReader extends ComicActivity {
 			storeComicClassList(mList, true);
 		}
 		catch(Exception e) {
+			ComicUpdater.addOtherException(e);
 			e.printStackTrace();
 			Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
 		}
@@ -353,6 +356,7 @@ public class ActivityComicReader extends ComicActivity {
         		}
     		}
     		catch(Exception e) {
+				ComicUpdater.addOtherException(e);
     			e.printStackTrace();
     			msg = "Failed to backup 'My Comics' list. Reason:" + e.getMessage();
     		}

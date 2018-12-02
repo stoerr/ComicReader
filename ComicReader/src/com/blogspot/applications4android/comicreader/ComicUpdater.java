@@ -11,6 +11,9 @@ import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Class responsible for downloading the comic-strip while displaying a progress dialog
@@ -28,6 +31,12 @@ public class ComicUpdater extends AsyncTask<Integer, Void, Void> {
 	/** comic strip type */
 	private int mType;
 
+	private static final List<Exception> otherExceptions = new ArrayList<Exception>();
+
+	public static void addOtherException(Exception other) {
+		if (otherExceptions.size() > 10) otherExceptions.remove(0);
+		otherExceptions.add(other);
+	}
 
 	/**
 	 * Set the activity upon which to display the progress dialog
@@ -130,6 +139,9 @@ public class ComicUpdater extends AsyncTask<Integer, Void, Void> {
 		StringBuilder sb = new StringBuilder();
 		createMessageFromException("ComicUpdater.onPostExecute failed! Reason: ", sb, e);
 		createMessageFromException("ComicUpdater.doInBackground failed! Reason: ", sb, mExp);
+		for (Exception other : otherExceptions) {
+			createMessageFromException("Other exception! Reason: ", sb, other);
+		}
 		final String body = sb.toString();
 		Log.e(TAG, body);
 		AlertDialog.Builder alertbox = new AlertDialog.Builder(mMain);
@@ -152,6 +164,7 @@ public class ComicUpdater extends AsyncTask<Integer, Void, Void> {
 			}
 		});
         alertbox.show();
+		otherExceptions.clear();
 	}
 
 }

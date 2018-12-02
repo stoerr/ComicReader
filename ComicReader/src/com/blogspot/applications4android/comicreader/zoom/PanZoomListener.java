@@ -1,6 +1,7 @@
 package com.blogspot.applications4android.comicreader.zoom;
 
 import com.blogspot.applications4android.comicreader.ComicStripViewer;
+import com.blogspot.applications4android.comicreader.ComicUpdater;
 import com.blogspot.applications4android.comicreader.R;
 import com.blogspot.applications4android.comicreader.core.Comic;
 
@@ -166,6 +167,7 @@ public class PanZoomListener implements OnTouchListener {
 					}
 				}
 				catch(Exception e) {
+					ComicUpdater.addOtherException(e);
 					e.printStackTrace();
 					Toast.makeText(mComicAct, "Failed to setup next/previous comic! "+e.getMessage(), Toast.LENGTH_LONG);
 				}

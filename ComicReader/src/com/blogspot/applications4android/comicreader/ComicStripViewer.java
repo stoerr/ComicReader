@@ -103,6 +103,7 @@ public class ComicStripViewer extends ComicActivity {
         	mList = setupComicsList("mSortPref");
         }
         catch(Exception e) {
+			ComicUpdater.addOtherException(e);
         	e.printStackTrace();
         	Toast.makeText(getApplicationContext(), "Failed to 'setupComicsList'! Reason: "+e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -117,6 +118,7 @@ public class ComicStripViewer extends ComicActivity {
 			_storeCurrentComic(true);
 		}
 		catch(Exception e) {
+			ComicUpdater.addOtherException(e);
 			e.printStackTrace();
 		}
     	super.onPause();
@@ -255,6 +257,7 @@ public class ComicStripViewer extends ComicActivity {
         	displayStrip(type);
     	}
     	catch(Exception e) {
+			ComicUpdater.addOtherException(e);
     		Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG);
     	}
     }
@@ -457,6 +460,7 @@ public class ComicStripViewer extends ComicActivity {
 	    	}
     	}
     	catch(Exception e) {
+			ComicUpdater.addOtherException(e);
     		Log.e(TAG, "onOptionsItemSelected: failed. Reason: "+e);
     		e.printStackTrace();
     		return false;
@@ -485,6 +489,7 @@ public class ComicStripViewer extends ComicActivity {
 			cu.execute(comic_type);
 		}
 		catch(Exception e) {
+			ComicUpdater.addOtherException(e);
 			Log.e(TAG, "displayStrip failed! Reason: " + e);
 			e.printStackTrace();
 		}
@@ -501,6 +506,7 @@ public class ComicStripViewer extends ComicActivity {
 			csu.execute(comic_url);
 		}
 		catch(Exception e) {
+			ComicUpdater.addOtherException(e);
 			Log.e(TAG, "selectAndDisplayStrip failed! Reason: " + e);
 			e.printStackTrace();
 		}
@@ -542,6 +548,7 @@ public class ComicStripViewer extends ComicActivity {
 			cbu.execute((Void[])null);
 		}
 		catch(Exception e) {
+			ComicUpdater.addOtherException(e);
 			Log.e(TAG, "updateBound failed! Reason: " + e);
 			e.printStackTrace();
 		}

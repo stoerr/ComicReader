@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 
+import com.blogspot.applications4android.comicreader.ComicUpdater;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -200,6 +201,7 @@ public class ComicClassList {
 			return com;
 		}
 		catch(Exception e) {
+			ComicUpdater.addOtherException(e);
 			ComicNotFoundException cnf = new ComicNotFoundException("Comic for idx="+idx+" could not be found!");
 			throw cnf;
 		}

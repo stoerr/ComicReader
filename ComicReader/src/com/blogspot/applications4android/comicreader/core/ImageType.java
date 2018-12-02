@@ -1,5 +1,7 @@
 package com.blogspot.applications4android.comicreader.core;
 
+import com.blogspot.applications4android.comicreader.ComicUpdater;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -54,6 +56,7 @@ public class ImageType {
             it = getImageType(fis);
         }
         catch(Exception e) {
+            ComicUpdater.addOtherException(e);
             e.printStackTrace();
         }
         return it;
@@ -100,6 +103,7 @@ public class ImageType {
 	        is.close();
         }
         catch(Exception e) {
+            ComicUpdater.addOtherException(e);
         	e.printStackTrace();
         }
         return it;

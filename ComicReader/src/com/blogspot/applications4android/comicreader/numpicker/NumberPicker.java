@@ -17,6 +17,7 @@
 package com.blogspot.applications4android.comicreader.numpicker;
 
 
+import com.blogspot.applications4android.comicreader.ComicUpdater;
 import com.blogspot.applications4android.comicreader.R;
 
 import android.content.Context;
@@ -416,7 +417,7 @@ public class NumberPicker extends LinearLayout implements OnClickListener, OnFoc
             try {
                 return Integer.parseInt(str);
             } catch (NumberFormatException e) {
-
+                ComicUpdater.addOtherException(e);
                 /* Ignore as if it's not a number we don't care */
             }
         }

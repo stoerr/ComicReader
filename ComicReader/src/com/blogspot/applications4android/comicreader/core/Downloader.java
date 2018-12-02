@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import com.blogspot.applications4android.comicreader.ComicUpdater;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -56,7 +57,9 @@ public class Downloader {
 			}
 			return sb.toString();
 		} finally {
-			try { br.close();} catch (Exception e) {}
+			try { br.close();} catch (Exception e) {
+				ComicUpdater.addOtherException(e);
+			}
 		}
 	}
 
@@ -115,8 +118,12 @@ public class Downloader {
 				fos.write(buff, 0, len);
 			}
 		} finally {
-			try { fos.close(); } catch (Exception e) {}
-			try { reader.close(); } catch (Exception e) {}
+			try { fos.close(); } catch (Exception e) {
+				ComicUpdater.addOtherException(e);
+			}
+			try { reader.close(); } catch (Exception e) {
+				ComicUpdater.addOtherException(e);
+			}
 		}
 	}
 

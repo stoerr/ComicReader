@@ -47,6 +47,7 @@ public class ClearCacheUpdater extends AsyncTask<Comic, Void, Void> {
 			return null;
 		}
 		catch(Exception e) {
+			ComicUpdater.addOtherException(e);
 			Log.e(TAG, "doInBackground failed: "+e);
 			e.printStackTrace();
 			return null;

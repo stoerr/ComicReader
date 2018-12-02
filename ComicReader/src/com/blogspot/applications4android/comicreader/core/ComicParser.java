@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import com.blogspot.applications4android.comicreader.ComicUpdater;
 import org.apache.http.client.ClientProtocolException;
 
 
@@ -31,7 +32,9 @@ public abstract class ComicParser {
 			String surl = parse(url, br, strip);
 			return surl;
 		} finally {
-			try { br.close(); } catch (Exception e) {}
+			try { br.close(); } catch (Exception e) {
+				ComicUpdater.addOtherException(e);
+			}
 		}
 	}
 

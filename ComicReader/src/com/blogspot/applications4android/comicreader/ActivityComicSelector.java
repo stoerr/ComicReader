@@ -108,6 +108,7 @@ public class ActivityComicSelector extends ComicActivity {
 				return true;
 			}
 			catch(Exception e) {
+				ComicUpdater.addOtherException(e);
 				e.printStackTrace();
 				return false;
 			}
@@ -180,6 +181,7 @@ public class ActivityComicSelector extends ComicActivity {
 				}
 			}
 			catch(ComicNotFoundException e) {
+				ComicUpdater.addOtherException(e);
 				e.printStackTrace();
 			}
             convertView.setBackgroundColor((position & 1) == 1 ? mColor1 : mColor2);
@@ -237,6 +239,7 @@ public class ActivityComicSelector extends ComicActivity {
 			storeComicClassList(mList, mStoreList);
 		}
 		catch(Exception e) {
+			ComicUpdater.addOtherException(e);
 			e.printStackTrace();
 			Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
 		}

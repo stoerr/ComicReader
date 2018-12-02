@@ -21,6 +21,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
+import com.blogspot.applications4android.comicreader.ComicUpdater;
 import org.json.JSONException;
 
 import android.content.res.AssetManager;
@@ -91,10 +92,12 @@ public class FileUtils {
 			return true;
 		}
 		catch(FileNotFoundException e) {
+			ComicUpdater.addOtherException(e);
 			e.printStackTrace();
 			return false;
 		}
 		catch(IOException e) {
+			ComicUpdater.addOtherException(e);
 			e.printStackTrace();
 			return false;
 		}
@@ -116,6 +119,7 @@ public class FileUtils {
 			return num;
 		}
 		catch(Exception e) {
+			ComicUpdater.addOtherException(e);
 			return 0;
 		}
 	}
@@ -130,6 +134,7 @@ public class FileUtils {
 			return numLines(new FileReader(file));
 		}
 		catch(Exception e) {
+			ComicUpdater.addOtherException(e);
 			return 0;
 		}
 	}
@@ -262,6 +267,7 @@ public class FileUtils {
 				return null;
 			}
 		} catch (RuntimeException e) { // for testing.
+			ComicUpdater.addOtherException(e);
 			System.err.println(e);
 			return null;
 		}
@@ -302,6 +308,7 @@ public class FileUtils {
 			return true;
 		}
 		catch(Exception e) {
+			ComicUpdater.addOtherException(e);
 			e.printStackTrace();
 			return false;
 		}
@@ -327,12 +334,15 @@ public class FileUtils {
 					files.add(fileName);
 				}
 			} catch (ComicNotFoundException e) {
+				ComicUpdater.addOtherException(e);
 				e.printStackTrace();
 				return false;
 			} catch (IOException e) {
+				ComicUpdater.addOtherException(e);
 				e.printStackTrace();
 				return false;
 			} catch (JSONException e) {
+				ComicUpdater.addOtherException(e);
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -389,6 +399,7 @@ public class FileUtils {
 
 			out.close();
 		} catch (Exception e) {
+			ComicUpdater.addOtherException(e);
 			e.printStackTrace();
 		}
 
@@ -424,6 +435,7 @@ public class FileUtils {
 			}
 			zin.close();
 		} catch (Exception e) {
+			ComicUpdater.addOtherException(e);
 			Log.e("Decompress", "unzip", e);
 			return false;
 		}

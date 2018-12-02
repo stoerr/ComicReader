@@ -3,6 +3,8 @@ package com.blogspot.applications4android.comicreader.comictypes;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.URI;
+
+import com.blogspot.applications4android.comicreader.ComicUpdater;
 import com.blogspot.applications4android.comicreader.core.Bound;
 import com.blogspot.applications4android.comicreader.core.Downloader;
 import com.blogspot.applications4android.comicreader.core.Strip;
@@ -44,10 +46,13 @@ public abstract class ArchivedComic extends IndexedComic {
 				reader = Downloader.openConnection(new URI(getArchiveUrl()));
 				mComicUrls = getAllComicUrls(reader);
 			} catch(Exception e) {
+				ComicUpdater.addOtherException(e);
 				e.printStackTrace();
 				return;
 			} finally {
-				try { reader.close(); } catch (Exception e) {}
+				try { reader.close(); } catch (Exception e) {
+					ComicUpdater.addOtherException(e);
+				}
 			}
 			mLatestId = mComicUrls.length - 1;
 			mBound = new Bound(0, (long) (mComicUrls.length - 1));

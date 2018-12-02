@@ -6,6 +6,7 @@ import java.util.Date;
 
 import android.util.Log;
 
+import com.blogspot.applications4android.comicreader.ComicUpdater;
 import com.blogspot.applications4android.comicreader.core.Downloader;
 import com.blogspot.applications4android.comicreader.core.RandUtils;
 
@@ -231,6 +232,7 @@ public class DailyGoComicsCalendar {
 			return day_i; // days;
 		}
 		catch(Exception e) {
+			ComicUpdater.addOtherException(e);
 			e.printStackTrace();
 			return null;
 		}
